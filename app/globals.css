@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────
+   Design Tokens (CSS Custom Properties)
+   8px spacing system, WCAG AA contrast
+   ───────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    --background:         0 0% 100%;
+    --foreground:         226 25% 11%;
+    --card:               0 0% 100%;
+    --card-foreground:    226 25% 11%;
+    --popover:            0 0% 100%;
+    --popover-foreground: 226 25% 11%;
+    --primary:            226 71% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary:          226 20% 96%;
+    --secondary-foreground: 226 25% 11%;
+    --muted:              226 15% 95%;
+    --muted-foreground:   226 10% 46%;
+    --accent:             32 95% 52%;
+    --accent-foreground:  0 0% 100%;
+    --destructive:        0 70% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border:             226 15% 90%;
+    --input:              226 15% 90%;
+    --ring:               226 71% 50%;
+    --radius:             0.75rem;
+
+    /* ─── Spacing scale (8px base) ─── */
+    --space-1:  0.25rem;   /* 4px */
+    --space-2:  0.5rem;    /* 8px */
+    --space-3:  0.75rem;   /* 12px */
+    --space-4:  1rem;      /* 16px */
+    --space-5:  1.25rem;   /* 20px */
+    --space-6:  1.5rem;    /* 24px */
+    --space-8:  2rem;      /* 32px */
+    --space-10: 2.5rem;    /* 40px */
+    --space-12: 3rem;      /* 48px */
+    --space-16: 4rem;      /* 64px */
+    --space-20: 5rem;      /* 80px */
+    --space-24: 6rem;      /* 96px */
+  }
+
+  .dark {
+    --background:         226 30% 7%;
+    --foreground:         226 10% 93%;
+    --card:               226 25% 10%;
+    --card-foreground:    226 10% 93%;
+    --popover:            226 25% 10%;
+    --popover-foreground: 226 10% 93%;
+    --primary:            226 65% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary:          226 20% 15%;
+    --secondary-foreground: 226 10% 90%;
+    --muted:              226 15% 15%;
+    --muted-foreground:   226 10% 56%;
+    --accent:             32 90% 55%;
+    --accent-foreground:  0 0% 100%;
+    --destructive:        0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border:             226 15% 18%;
+    --input:              226 15% 18%;
+    --ring:               226 65% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ─── Utility classes ─── */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-white/30 dark:border-white/10 shadow-lg shadow-black/[0.03] dark:shadow-black/[0.2];
+  }
+
+  .gradient-brand {
+    @apply bg-gradient-to-r from-brand-500 via-brand-400 to-accent-500;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-brand-500 to-accent-500;
+  }
+
+  .gradient-mesh {
+    background-image:
+      radial-gradient(at 27% 37%, hsla(226, 71%, 50%, 0.12) 0px, transparent 50%),
+      radial-gradient(at 97% 21%, hsla(32, 95%, 52%, 0.08) 0px, transparent 50%),
+      radial-gradient(at 52% 99%, hsla(226, 65%, 42%, 0.06) 0px, transparent 50%),
+      radial-gradient(at 10% 29%, hsla(152, 62%, 36%, 0.05) 0px, transparent 50%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-in {
+    animation: fade-up 0.6s ease-out both;
+  }
+
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-450 {
+    animation-delay: 450ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
+
+/* ─── Scrollbar styling ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-200 dark:bg-brand-800 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-brand-300 dark:bg-brand-700;
+}
